@@ -49,7 +49,7 @@ services:
     volumes:
         -  /var/run/:/host/var/run/
         - ./msp:/etc/hyperledger/msp
-        - ./contract:/opt/gopath/src/chaincode
+        - ./peer_files/application/chaincode:/opt/gopath/src/chaincode
 
   couchdb: 
     image: hyperledger/fabric-couchdb:0.4.15
@@ -291,7 +291,14 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: /bin/bash
     volumes:
-        - /var/run/:/host/var/run/
-       # - ../:/opt/gopath/src/github.com/
+        -  /var/run/:/host/var/run/
         - ./peer_files/:/opt/gopath/src/github.com/hyperledger/fabric/peer
         - ./msps/admin/msp:/etc/hyperledger/msp
+
+volumes:
+    distributor.blazers.com:
+    retailer.blazers.com:
+    manufacturer.blazers.com:
+    supplier.blazers.com:
+    admin.blazers.com:
+
