@@ -1,6 +1,4 @@
 # configtx
-# Used for setting up the Phase-3 of CommercialPaper Nw on the cloud
-
 #   CAPABILITIES
 Capabilities:
   Application: &ApplicationCapabilities
@@ -26,9 +24,6 @@ Organizations:
       Admins:
           Type: Signature
           Rule: "OR('BlazersMSP.admin')"
-      AnchorPeers:
-      - Host: localhost
-        Port: 7051
 
   
 #   ORDERER
@@ -174,7 +169,7 @@ Channel: &ChannelDefaults
 #   PROFILES
 Profiles:
 
-  CommercialPaperOrdererGenesis:
+  FoodSupplyOrdererGenesis:
       <<: *ChannelDefaults
       Orderer:
           <<: *OrdererDefaults
@@ -190,13 +185,14 @@ Profiles:
 
       Consortiums:
 
-        CommercialPaperConsortium:
+        FoodSupplyConsortium:
             
             Organizations:
                   - <<: *Blazers
                   
-  CommercialPaperChannel:
+  FoodSupplyChannel:
     <<: *ChannelDefaults
+    
     Consortium: FoodSupplyConsortium
         
     Application:

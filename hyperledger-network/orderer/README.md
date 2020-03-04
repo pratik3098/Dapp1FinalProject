@@ -1,0 +1,1 @@
+Copy the ./artefacts/configtx in /usr/bin

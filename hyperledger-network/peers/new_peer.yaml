@@ -1,0 +1,35 @@
+version: '2'
+
+services: 
+  peer:
+    image: hyperledger/fabric-peer:1.4.1
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+   # command: chmod 755 * && peer node start 2> peer.log &
+  
+  
+
+  chaincode:
+    image: hyperledger/fabric-ccenv:1.4.1
+    tty: true
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - CORE_PEER_ID=peer
+      - CORE_PEER_ADDRESS=peer:7051
+      - CORE_PEER_LOCALMSPID=BlazersMSP
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp
+      - CHAINCODE_LOGGING_LEVEL=info
+    working_dir: /opt/gopath/src/chaincode
+    command: /bin/bash -c 'sleep 6000000'
+    volumes:
+        -  /var/run/:/host/var/run/
+        - ./msp:/etc/hyperledger/msp
+        - ./contract:/opt/gopath/src/chaincode
+
+  couchdb: 
+    image: hyperledger/fabric-couchdb:0.4.15
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+  
