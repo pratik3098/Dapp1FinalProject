@@ -13,7 +13,7 @@ Organizations:
   - &Blazers
     Name: Blazers
     ID: BlazersMSP
-    MSPDir: ../msps/msp
+    MSPDir: ../msp
     Policies: &BlazersPolicies
       Readers:
           Type: Signature
