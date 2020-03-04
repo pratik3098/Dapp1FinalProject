@@ -14,7 +14,7 @@ orderer:
       - ORDERER_FILELEDGER_PREFIX=blazers-orderer
       - ORDERER_GENERAL_PROFILE_ENABLED=false
       - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/opt/gopath/src/github.com/hyperledger/fabric/orderer/commercialpaper-genesis.block
+      - ORDERER_GENERAL_GENESISFILE=/opt/gopath/src/github.com/hyperledger/fabric/orderer/foodsupply-genesis.block
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/msp
       - ORDERER_GENERAL_TLS_ENABLED=false
       - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/msp/tls/server.key
@@ -24,7 +24,7 @@ orderer:
     # command: orderer
     volumes:
       -  /var/run/:/host/var/run/
-      - ./msp/orderer/msp:/var/hyperledger/msp
+      - ./msps/msp:/var/hyperledger/msp
       - ./artefacts:/opt/gopath/src/github.com/hyperledger/fabric/orderer/
     ports:
       - "7050:7050"
