@@ -25,7 +25,7 @@ Organizations:
           Type: Signature
           Rule: "OR('BlazersMSP.admin')"
     AnchorPeers:
-      - Host: localhost
+      - Host: admin.blazers.com
         Port: 6051
 
   
@@ -35,7 +35,7 @@ Orderer: &OrdererDefaults
   OrdererType: solo
 
   Addresses:
-    - localhost:7050
+    - orderer.blazers.com:7050
 
     # Policies for Orderer
   Policies:
