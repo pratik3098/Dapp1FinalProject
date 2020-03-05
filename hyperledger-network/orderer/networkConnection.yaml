@@ -46,7 +46,7 @@ channels:
 
     # Required. list of peers from participating orgs
     peers:
-      peer.blazers.com:
+      admin.blazers.com:
         # [Optional]. will this peer be sent transaction proposals for endorsement? The peer must
         # have the chaincode installed. The app can also use this property to decide which peers
         # to send the chaincode install request. Default: true
@@ -74,7 +74,7 @@ organizations:
     mspid: BlazersMSP
 
     peers:
-      - peer.blazers.com
+      - admin.blazers.com
 
     # [Optional]. Certificate Authorities issue certificates for identification purposes in a Fabric based
     # network. Typically certificates provisioning is done in a separate process outside of the
@@ -103,9 +103,9 @@ orderers:
 # and event listener registration.
 #
 peers:
-  peer.blazers.com:
+  admin.blazers.com:
     # this URL is used to send endorsement and query requests
-    url: http://localhost:7051
+    url: admin.blazers.com:7051
 
     httpOptions:
       verify: false

@@ -312,7 +312,7 @@ services:
       - CHANNEL_TX_FILE=./foodsupply-channel.tx
       - ORDERER_ADDRESS=orderer.blazers.com:7050
       - CORE_PEER_ID=cli.blazers.com
-      - CORE_PEER_ADDRESS=supplier.blazers.com:7051
+      - CORE_PEER_ADDRESS=admin.blazers.com:7051
       - CORE_PEER_LOCALMSPID=BlazersMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp
       - GOPATH=/opt/gopath
