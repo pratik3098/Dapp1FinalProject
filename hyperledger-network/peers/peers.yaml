@@ -113,16 +113,21 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=0.0.0.0:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
+      - CORE_PEER_GOSSIP_ORGLEADER=true
+      - CORE_PEER_ADMINSERVICE_LISTENADDRESS=0.0.0.0:7055
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
     command: peer node start
+    links:
+      - couchdb.admin.blazers.com
     volumes:
         - ./peer_files:/opt/gopath/src/github.com/hyperledger/fabric/peer
         - ./msps/admin/msp:/etc/hyperledger/fabric/msp
         -  admin.blazers.com:/var/hyperledger/production
     ports:
       - 6051:7051
+      - 6055:7055
       - 6053:7053
     depends_on:
      - couchdb.admin.blazers.com
@@ -303,6 +308,8 @@ services:
     image: hyperledger/fabric-tools
     tty: true
     environment:
+      - FOODSUPPLY_CHANNEL_BLOCK_0=./foodsupplychannel_0.block
+      - CHANNEL_TX_FILE=./foodsupply-channel.tx
       - ORDERER_ADDRESS=orderer.blazers.com:7050
       - CORE_PEER_ID=cli.blazers.com
       - CORE_PEER_ADDRESS=supplier.blazers.com:7051
