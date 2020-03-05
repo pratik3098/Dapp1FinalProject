@@ -21,7 +21,7 @@ orderer:
       - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/msp/tls/server.crt
       - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/msp/tls/ca.crt]
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
-    # command: orderer
+    command: orderer
     volumes:
       -  /var/run/:/host/var/run/
       - ./msp:/var/hyperledger/msp
