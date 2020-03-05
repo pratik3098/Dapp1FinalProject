@@ -105,8 +105,8 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.admin.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
-      - COUCHDB_USER=admin
-      - COUCHDB_PASSWORD=adminpw
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     command: peer node start
     volumes:
         - ./peer_files:/opt/gopath/src/github.com/hyperledger/fabric/peer
@@ -207,8 +207,7 @@ services:
     environment:
       - CORE_PEER_ID=admin.blazers
       - CORE_PEER_ADDRESS=admin.blazers.com:7051
-      - COUCHDB_USER=admin
-      - COUCHDB_PASSWORD=adminpw
+
     volumes:
         - ./msps/admin/msp:/etc/hyperledger/msp
     ports: 
