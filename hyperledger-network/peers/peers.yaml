@@ -169,7 +169,7 @@ services:
    # command: chmod 755 * && ./launch-peer.sh
     volumes:
         - ./msps/distributor/msp:/etc/hyperledger/fabric/msp
-        - distributor.blazers.com:/var/hyperledger/production
+        -  distributor.blazers.com:/var/hyperledger/production
     ports:
       - 9051:7051
       - 9053:7053
@@ -190,7 +190,7 @@ services:
    # command: chmod 755 * && ./launch-peer.sh
     volumes:
         - ./msps/retailer/msp:/etc/hyperledger/fabric/msp
-        - retailer.blazers.com:/var/hyperledger/production
+        -  retailer.blazers.com:/var/hyperledger/production
     ports:
         - 10051:7051
         - 10053:7053
@@ -296,9 +296,15 @@ services:
         - ./msps/admin/msp:/etc/hyperledger/msp
 
 volumes:
-    distributor.blazers.com:
-    retailer.blazers.com:
-    manufacturer.blazers.com:
-    supplier.blazers.com:
-    admin.blazers.com:
+   retailer.blazers.com:
+   
+   manufacturer.blazers.com:
 
+   supplier.blazers.com:
+
+   distributor.blazers.com:
+
+   admin.blazers.com:
+
+
+   
