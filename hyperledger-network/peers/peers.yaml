@@ -13,7 +13,6 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb:5984
       - ORDERER_ADDRESS=orderer.blazers.com:7050
-      - FABRIC_CFG_PATH= /opt/gopath/src/github.com/hyperledger/fabric/peer
       - FOODSUPPLY_CHANNEL_BLOCK_0=./foodsupplychannel_0.block
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_PEER_NETWORKID= foodsupply-network
@@ -106,8 +105,11 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.admin.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
-    command: chmod 755 * && ./create-channel.sh
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
+    command: peer node start
     volumes:
+        - ./peer_files:/opt/gopath/src/github.com/hyperledger/fabric/peer
         - ./msps/admin/msp:/etc/hyperledger/fabric/msp
         -  admin.blazers.com:/var/hyperledger/production
     ports:
@@ -126,7 +128,7 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.supplier.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.supplier.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=supplier.blazers.com:7051
-    #command: chmod 755 * && ./launch-peer.sh
+    command: peer node start
     volumes:
         - ./msps/supplier/msp:/etc/hyperledger/fabric/msp
         -  supplier.blazers.com:/var/hyperledger/production
@@ -146,7 +148,7 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.manufacturer.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.manufacturer.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=manufacturer.blazers.com:7051
-    #command: chmod 755 * && ./launch-peer.sh
+    command: chmod 755 * && ./launch-peer.sh
     volumes:
         - ./msps/manufacturer/msp:/etc/hyperledger/fabric/msp
         -  manufacturer.blazers.com:/var/hyperledger/production
@@ -166,7 +168,7 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.distributor.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.distributor.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=distributor.blazers.com:7051
-   # command: chmod 755 * && ./launch-peer.sh
+    command: chmod 755 * && ./launch-peer.sh
     volumes:
         - ./msps/distributor/msp:/etc/hyperledger/fabric/msp
         -  distributor.blazers.com:/var/hyperledger/production
@@ -187,7 +189,7 @@ services:
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.retailer.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.retailer.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=retailer.blazers.com:7051
-   # command: chmod 755 * && ./launch-peer.sh
+    command: chmod 755 * && ./launch-peer.sh
     volumes:
         - ./msps/retailer/msp:/etc/hyperledger/fabric/msp
         -  retailer.blazers.com:/var/hyperledger/production
@@ -205,6 +207,8 @@ services:
     environment:
       - CORE_PEER_ID=admin.blazers
       - CORE_PEER_ADDRESS=admin.blazers.com:7051
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
     volumes:
         - ./msps/admin/msp:/etc/hyperledger/msp
     ports: 
