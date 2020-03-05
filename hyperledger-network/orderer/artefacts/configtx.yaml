@@ -24,6 +24,9 @@ Organizations:
       Admins:
           Type: Signature
           Rule: "OR('BlazersMSP.admin')"
+    AnchorPeers:
+      - Host: localhost
+        Port: 6051
 
   
 #   ORDERER
@@ -45,6 +48,7 @@ Orderer: &OrdererDefaults
     Admins:
         Type: ImplicitMeta  
         Rule: "MAJORITY Admins"
+  
 
     # BlockValidation specifies what signatures must be included in the block
     # from the orderer for the peer to validate it.
