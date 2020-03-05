@@ -26,7 +26,7 @@ Organizations:
           Rule: "OR('BlazersMSP.admin')"
     AnchorPeers:
       - Host: admin.blazers.com
-        Port: 6051
+        Port: 7051
 
   
 #   ORDERER
