@@ -1,5 +1,6 @@
 ## George Brown College - Blockchain Development Program
-### Dapp1 - Group Project - Food Supply Chain
+### Dapp1 - Food Supply Chain
+### Group Project
 -----
 Mohammad Jamshed Qureshi
 > mohammadjamshed.qureshi@georgebrown.ca
@@ -12,5 +13,5 @@ Pratik Patil
 
 Andrew Starling
 > andrew.starling@georgebrown.ca
-
+-----
 
