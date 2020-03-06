@@ -84,14 +84,14 @@ Application: &ApplicationDefaults
     lscc/GetChaincodeData: /Channel/Application/Readers
 
     # ACL Policy for lscc's "getchaincodes" function
-    lscc/GetInstantiatedChaincodes: /Channel/Application/Readers
-    #lscc/GetInstantiatedChaincodes: /Channel/Application/StrictAdminPolicy
+    #lscc/GetInstantiatedChaincodes: /Channel/Application/Readers
+    lscc/GetInstantiatedChaincodes: /Channel/Application/Admins
 
     #---Query System Chaincode (qscc) function to policy mapping for access control---#
 
     # ACL policy for qscc's "GetChainInfo" function
-    qscc/GetChainInfo: /Channel/Application/Readers
-    #qscc/GetChainInfo: /Channel/Application/StrictAdminPolicy
+    #qscc/GetChainInfo: /Channel/Application/Readers
+    qscc/GetChainInfo: /Channel/Application/Admins
 
     # ACL policy for qscc's "GetBlockByNumber" function
     qscc/GetBlockByNumber: /Channel/Application/Readers
@@ -142,10 +142,7 @@ Application: &ApplicationDefaults
         Rule: "ANY Writers"
     Admins:
         Type: ImplicitMeta
-        Rule: "ANY Admins"
-    StrictAdminPolicy:
-        Type: ImplicitMeta
-        Rule: "ANY Admins"
+        Rule: "MAJORITY Admins"
  
   Organizations:
 
