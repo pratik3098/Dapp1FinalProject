@@ -1,0 +1,35 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+
+services:
+  ca.blazers.com:
+    container_name: ca.blazers.com
+    image: hyperledger/fabric-ca:1.4.1
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.blazers
+      - FABRIC_CA_SERVER_TLS_ENABLED=false
+      - FABRIC_CA_SERVER_PORT=7054
+      - FABRIC_CA_CLIENT_HOME=/etc/hyperledger/fabric-ca-client
+      - FABRIC_CA_KEYFILE=./ca/priv_sk
+      - FABRIC_CA_CERTFILE='./ca/ca.blazers-cert.pem
+      - FABRIC_CA_CHAINFILE=./ca/ca.blazers-cert.pem
+    working_dir: /etc/hyperledger/fabric-ca-server
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start'
+    networks:
+      - orderer_backend_network
+    volumes:
+      - ./fabric-ca-server:/etc/hyperledger/fabric-ca-server
+      - ../peers/msps:/etc/hyperledger/fabric-ca-client
+
+
+networks:
+   orderer_backend_network:
+     external: true

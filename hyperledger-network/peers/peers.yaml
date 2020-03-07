@@ -52,7 +52,6 @@ services:
       - orderer_backend_network
     volumes:
         -  /var/run/:/host/var/run/
-        - ./msp:/etc/hyperledger/msp
         - ./peer_files/application/chaincode:/opt/gopath/src/chaincode
 
   couchdb: 
@@ -111,6 +110,7 @@ services:
       - CORE_PEER_ADDRESS=admin.blazers.com:7051
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.admin.blazers.com:7052
       - CORE_PEER_CHAINCODE_LISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
       - CORE_PEER_GOSSIP_ORGLEADER=true
@@ -123,7 +123,7 @@ services:
       - couchdb.admin.blazers.com
     volumes:
         - ./peer_files:/opt/gopath/src/github.com/hyperledger/fabric/peer
-        - ./msps/admin/msp:/etc/hyperledger/fabric/msp
+        - ./msps/admin.blazers/msp:/etc/hyperledger/fabric/msp
         -  admin.blazers.com:/var/hyperledger/production
     ports:
       - 6051:7051
@@ -147,7 +147,7 @@ services:
     links:
       - couchdb.supplier.blazers.com
     volumes:
-        - ./msps/supplier/msp:/etc/hyperledger/fabric/msp
+        - ./msps/supplier.blazers/msp:/etc/hyperledger/fabric/msp
         -  supplier.blazers.com:/var/hyperledger/production
     ports:
       - 7051:7051
@@ -170,7 +170,7 @@ services:
     links:
       - couchdb.manufacturer.blazers.com
     volumes:
-        - ./msps/manufacturer/msp:/etc/hyperledger/fabric/msp
+        - ./msps/manufacturer.blazers/msp:/etc/hyperledger/fabric/msp
         -  manufacturer.blazers.com:/var/hyperledger/production
     ports:
       - 8051:7051
@@ -193,7 +193,7 @@ services:
     links:
       - couchdb.distributor.blazers.com
     volumes:
-        - ./msps/distributor/msp:/etc/hyperledger/fabric/msp
+        - ./msps/distributor.blazers/msp:/etc/hyperledger/fabric/msp
         -  distributor.blazers.com:/var/hyperledger/production
     ports:
       - 9051:7051
@@ -217,7 +217,7 @@ services:
     links:
       - couchdb.retailer.blazers.com
     volumes:
-        - ./msps/retailer/msp:/etc/hyperledger/fabric/msp
+        - ./msps/retailer.blazers/msp:/etc/hyperledger/fabric/msp
         -  retailer.blazers.com:/var/hyperledger/production
     ports:
         - 10051:7051
@@ -235,7 +235,7 @@ services:
       - CORE_PEER_ADDRESS=admin.blazers.com:7051
 
     volumes:
-        - ./msps/admin/msp:/etc/hyperledger/msp
+        - ./msps/admin.blazers/msp:/etc/hyperledger/msp
     ports: 
        - 6052:7052
     depends_on:
@@ -250,7 +250,7 @@ services:
       - CORE_PEER_ID=supplier.blazers
       - CORE_PEER_ADDRESS=supplier.blazers.com:7051
     volumes:
-      - ./msps/supplier/msp:/etc/hyperledger/msp
+      - ./msps/supplier.blazers/msp:/etc/hyperledger/msp
     ports: 
       - 7052:7052
     depends_on:
@@ -265,7 +265,7 @@ services:
       - CORE_PEER_ID=manufacturer.blazers
       - CORE_PEER_ADDRESS=manufacturer.blazers.com:7051
     volumes:
-      - ./msps/manufacturer/msp:/etc/hyperledger/msp
+      - ./msps/manufacturer.blazers/msp:/etc/hyperledger/msp
     ports: 
       - 8052:7052
     depends_on:
@@ -280,7 +280,7 @@ services:
       - CORE_PEER_ID=distributor.blazers
       - CORE_PEER_ADDRESS=distributor.blazers.com:7051
     volumes:
-      - ./msps/distributor/msp:/etc/hyperledger/msp
+      - ./msps/distributor.blazers/msp:/etc/hyperledger/msp
     ports: 
       - 9052:7052
     depends_on:
@@ -295,7 +295,7 @@ services:
       - CORE_PEER_ID=retailer.blazers
       - CORE_PEER_ADDRESS=retailer.blazers.com:7051
     volumes:
-      - ./msps/retailer/msp:/etc/hyperledger/msp
+      - ./msps/retailer.blazers/msp:/etc/hyperledger/msp
     ports: 
       - 10052:7052
     depends_on:
@@ -326,7 +326,7 @@ services:
     volumes:
         -  /var/run/:/host/var/run/
         - ./peer_files/:/opt/gopath/src/github.com/hyperledger/fabric/peer
-        - ./msps/admin/msp:/etc/hyperledger/msp
+        - ./msps/admin.blazers/msp:/etc/hyperledger/msp
 
 networks:
   orderer_backend_network:
