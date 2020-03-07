@@ -47,7 +47,7 @@ Orderer: &OrdererDefaults
         Rule: "ANY Writers"
     Admins:
         Type: ImplicitMeta  
-        Rule: "MAJORITY Admins"
+        Rule: "ANY Admins"
   
 
     # BlockValidation specifies what signatures must be included in the block
@@ -161,7 +161,7 @@ Channel: &ChannelDefaults
         Rule: "ANY Writers"
     Admins:
         Type: ImplicitMeta
-        Rule: "ANY Admins"
+        Rule: "MAJORITY Admins"
 
   Capabilities:
     <<: *ChannelCapabilities
