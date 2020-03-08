@@ -2,22 +2,22 @@
 
 2. fabric-ca-server start -b admin.blazers:adminpw 
 
-3. export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin.blazers
+3. export FABRIC_CA_CLIENT_HOME=/etc/hyperledger/fabric-ca-client/admin.blazers
   fabric-ca-client enroll -u http://admin.blazers:adminpw@localhost:7054
 
-  fabric-ca-client identity modify admin.blazers  --json {"attrs": [{"name": "hf.Registrar.Roles", "value": "peer,admin,orderer,client"}]}
+  fabric-ca-client identity modify admin.blazers  --json '{"attrs": [{"name": "hf.Registrar.Roles", "value": "peer,admin,orderer,client,user"}]}'
 
 4. Adding Affiliation
 fabric-ca-client affiliation add blazers
 
 5.Registering identities: 
-fabric-ca-client register -d --id.name supplier.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=false:ecert'
+fabric-ca-client register -d --id.name supplier.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=true:ecert'
 
-fabric-ca-client register -d --id.name distributor.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=false:ecert'
+fabric-ca-client register -d --id.name distributor.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=true:ecert'
 
-fabric-ca-client register -d --id.name retailer.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=false:ecert'
+fabric-ca-client register -d --id.name retailer.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=true:ecert'
 
-fabric-ca-client register -d --id.name manufactuer.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=false:ecert'
+fabric-ca-client register -d --id.name manufacturer.blazers --id.secret pw --id.attrs 'hf.Revoker=true,admin=true:ecert'
 
 fabric-ca-client register -d --id.name cli.blazers --id.secret adminpw --id.attrs 'hf.Revoker=true,admin=true:ecert'
 
@@ -43,7 +43,7 @@ export FABRIC_CA_CLIENT_HOME=/etc/hyperledger/fabric-ca-client/orderer.blazers
 fabric-ca-client enroll -u http://orderer.blazers:ordererpw@localhost:7054
 
 export FABRIC_CA_CLIENT_HOME=/etc/hyperledger/fabric-ca-client/cli.blazers
-fabric-ca-client enroll -u http://orderer.blazers:ordererpw@localhost:7054
+fabric-ca-client enroll -u http://cli.blazers:adminpw@localhost:7054
 
 
 

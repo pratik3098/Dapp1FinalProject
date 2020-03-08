@@ -82,7 +82,7 @@ organizations:
     # dynamic certificate management (enroll, revoke, re-enroll). The following section is only for
     # Fabric-CA servers.
     certificateAuthorities:
-      - ca-blazers
+      - ca.blazers.com
 
 #
 # List of orderers to send transaction and channel create/update requests to. For the time
@@ -129,4 +129,4 @@ certificateAuthorities:
       - enrollId: admin
         enrollSecret: adminpw
     # [Optional] The optional name of the CA.
-    caName: ca.blazers
+    caName: ca.blazers.com
