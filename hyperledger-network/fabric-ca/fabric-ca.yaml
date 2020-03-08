@@ -22,7 +22,7 @@ services:
     working_dir: /etc/hyperledger/fabric-ca-server
     ports:
       - "7054:7054"
-    command: sh -c 'fabric-ca-server start'
+    command: sh -c 'fabric-ca-server init -b admin.blazers:adminpw && sleep 60000000'
     networks:
       - orderer_backend_network
     volumes:

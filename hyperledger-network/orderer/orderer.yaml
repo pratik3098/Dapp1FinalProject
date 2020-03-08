@@ -29,7 +29,7 @@ services:
     command: orderer
     volumes:
       -  /var/run/:/host/var/run/
-      - ./msp:/var/hyperledger/msp
+      - ./orderer.blazers/msp:/var/hyperledger/msp
       - ./artefacts:/opt/gopath/src/github.com/hyperledger/fabric/orderer/
     ports:
       - "7050:7050"
