@@ -11,6 +11,8 @@ PeerOrgs:
   Specs:
   - Hostname: admin.blazers
     CommonName: "{{.Hostname}}"
+  - Hostname: ca.blazers
+    CommonName: "{{.Hostname}}"
   - Hostname: supplier.blazers
     CommonName: "{{.Hostname}}"
   - Hostname: distributor.blazers
