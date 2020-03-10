@@ -2,8 +2,6 @@ function    usage {
     echo  "Usage: ./chain-test.sh    install | instantiate | invoke | query "
     echo  "Utility for testing peer/channel setup with chaincode"
 }
-#source ./set-env.sh
-# Uses the core.yaml file in current folder - copy of core.yaml under cloud/bins/peer
 if [ -z $1 ];
 then
     usage
@@ -19,7 +17,7 @@ fi
 # Change these if you would like to try out your own chaincode
 export CC_CONSTRUCTOR='{"Args":["instantiate"]}'
 export CC_NAME="foodsupply"
-export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/contract_files/contract"
+export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/peer_files/contract_files/contract"
 export CC_VERSION="1.0"
 export CC_CHANNEL_ID="foodsupplychannel"
 
@@ -30,10 +28,10 @@ case $OPERATION in
     "install")   
               peer chaincode install  -n $CC_NAME -p $CC_PATH -v $CC_VERSION -l node
 
-              peer chaincode list --installed -C $CC_CHANNEL_ID
+              peer chaincode list --installed -C $CC_CHANNEL_ID 
         ;;
     "instantiate")
-              npm run --prefix $CC_PATH
+             # npm run --prefix $CC_PATH
               peer chaincode instantiate -C $CC_CHANNEL_ID -n $CC_NAME  -v $CC_VERSION -c $CC_CONSTRUCTOR  -o $ORDERER_ADDRESS
 
               #peer chaincode list --instantiated -C $CC_CHANNEL_ID

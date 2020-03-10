@@ -14,8 +14,8 @@ sleep 3
 peer channel join -b $FOODSUPPLY_CHANNEL_BLOCK -o $ORDERER_ADDRESS
 #sleep 3 
 
-./chaincode-install.sh install 
+./peer_files/chaincode-install.sh install 
 
 
-#./chaincode-install.sh instantiate
+#./peer_files/chaincode-install.sh instantiate
 
