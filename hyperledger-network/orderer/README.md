@@ -1,1 +1,1 @@
-Copy the ./artefacts/configtx in /usr/bin
+Copy the ./configtx in /usr/bin

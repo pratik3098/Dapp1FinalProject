@@ -114,11 +114,11 @@ services:
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
-      - CORE_PEER_GOSSIP_ORGLEADER=true
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
-    command: ./admin-launch.sh
+    command:  peer node start
+    links:
       - couchdb.admin.blazers.com
     volumes:
         - ./peer_files:/opt/gopath/src/github.com/hyperledger/fabric/peer

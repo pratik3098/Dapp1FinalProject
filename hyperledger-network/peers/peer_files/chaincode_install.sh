@@ -19,7 +19,7 @@ fi
 # Change these if you would like to try out your own chaincode
 export CC_CONSTRUCTOR='{"Args":["instantiate"]}'
 export CC_NAME="foodsupply"
-export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/application/chaincode"
+export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/contract_files/chaincode"
 export CC_VERSION="1.0"
 export CC_CHANNEL_ID="foodsupplychannel"
 
