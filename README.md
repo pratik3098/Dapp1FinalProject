@@ -1,4 +1,4 @@
-# George Brown College - Blockchain Development Program T75 Fall 2019-2020
+# George Brown College - Blockchain Development Program T175 Fall 2019-2020
 
 # Group Project
 
