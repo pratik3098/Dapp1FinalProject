@@ -40,7 +40,7 @@
 #############################################################################
 
 # URL of the Fabric-ca-server (default: http://localhost:7054)
-url: http://localhost:7054
+url: http://ca.blazers.com:7054
 
 # Membership Service Provider (MSP) directory
 # This is useful when the client is used to enroll a peer or orderer, so
@@ -99,7 +99,7 @@ tls:
 #
 #############################################################################
 csr:
-  cn: admin
+  cn: admin.blazers
   keyrequest:
     algo: ecdsa
     size: 256
@@ -111,7 +111,7 @@ csr:
       O: Hyperledger
       OU: Fabric
   hosts:
-    - ce173b0f69af
+    - 1fcbb7b16806
 
 #############################################################################
 #  Registration section used to register a new identity with fabric-ca server

@@ -12,7 +12,7 @@ services:
       - ORDERER_GENERAL_LOCALMSPID=BlazersMSP
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_FILELEDGER_LOCATION=/opt/gopath/src/github.com/hyperledger/ledger
-      - ORDERER_CONSENSUS=""
+     # - ORDERER_CONSENSUS=""
       - ORDERER_GENERAL_GENESISPROFILE=FoodSupplyOrdererGenesis
       - ORDERER_FILELEDGER_PREFIX=blazers-orderer
       - ORDERER_GENERAL_PROFILE_ENABLED=false
