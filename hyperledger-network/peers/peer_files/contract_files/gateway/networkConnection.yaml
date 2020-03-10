@@ -4,14 +4,14 @@
 # blockchain network that are necessary for the applications to interact with it. These are all
 # knowledge that must be acquired from out-of-band sources. This file provides such a source.
 #
-name: "basic-network"
+name: "foodsupply-network"
 
 #
 # Any properties with an "x-" prefix will be treated as application-specific, exactly like how naming
 # in HTTP headers or swagger properties work. The SDK will simply ignore these fields and leave
 # them for the applications to process. This is a mechanism for different components of an application
 # to exchange information that are not part of the standard schema described below. In particular,
-# the "x-type" property with the "hlfv1" value example below is used by Hyperledger Composer to
+# the "x-type" property with the "hlfv1" value hyperfabrics below is used by Hyperledger Composer to
 # determine the type of Fabric networks (v0.6 vs. v1.0) it needs to work with.
 #
 x-type: "hlfv1"
@@ -19,7 +19,7 @@ x-type: "hlfv1"
 #
 # Describe what the target network is/does.
 #
-description: "The basic network"
+description: "The Food Supply network"
 
 #
 # Schema version of the content. Used by the SDK to apply the corresponding parsing rules.
@@ -27,7 +27,7 @@ description: "The basic network"
 version: "1.0"
 
 client:
-  organization: Org1
+  organization: Blazers
 
 #
 # [Optional]. But most apps would have this section so that channel objects can be constructed
@@ -36,17 +36,17 @@ client:
 #
 channels:
   # name of the channel
-  mychannel:
+  foodsupplychannel:
     # Required. list of orderers designated by the application to use for transactions on this
-    # channel. This list can be a result of access control ("org1" can only access "ordererA"), or
+    # channel. This list can be a result of access control ("blazers" can only access "ordererA"), or
     # operational decisions to share loads from applications among the orderers.  The values must
     # be "names" of orgs defined under "organizations/peers"
     orderers:
-      - orderer.example.com
+      - orderer.blazers.com
 
     # Required. list of peers from participating orgs
     peers:
-      peer0.org1.example.com:
+      admin.blazers.com:
         # [Optional]. will this peer be sent transaction proposals for endorsement? The peer must
         # have the chaincode installed. The app can also use this property to decide which peers
         # to send the chaincode install request. Default: true
@@ -70,11 +70,11 @@ channels:
 # list of participating organizations in this network
 #
 organizations:
-  Org1:
-    mspid: Org1MSP
+  Blazers:
+    mspid: BlazersMSP
 
     peers:
-      - peer0.org1.example.com
+      - admin.blazers.com
 
     # [Optional]. Certificate Authorities issue certificates for identification purposes in a Fabric based
     # network. Typically certificates provisioning is done in a separate process outside of the
@@ -82,7 +82,7 @@ organizations:
     # dynamic certificate management (enroll, revoke, re-enroll). The following section is only for
     # Fabric-CA servers.
     certificateAuthorities:
-      - ca-org1
+      - ca.blazers.com
 
 #
 # List of orderers to send transaction and channel create/update requests to. For the time
@@ -90,34 +90,34 @@ organizations:
 # SDK is implementation specific. Consult each SDK's documentation for its handling of orderers.
 #
 orderers:
-  orderer.example.com:
+  orderer.blazers.com:
     url: grpc://localhost:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
     grpcOptions:
-      ssl-target-name-override: orderer.example.com
+      ssl-target-name-override: orderer.blazers.com
 
 #
 # List of peers to send various requests to, including endorsement, query
 # and event listener registration.
 #
 peers:
-  peer0.org1.example.com:
+  admin.blazers.com:
     # this URL is used to send endorsement and query requests
-    url: grpc://localhost:7051
+    url: admin.blazers.com:7051
 
-    grpcOptions:
-      ssl-target-name-override: peer0.org1.example.com
-      request-timeout: 120001
+    httpOptions:
+      verify: false
+
 
 # Fabric-CA is a special kind of Certificate Authority provided by Hyperledger Fabric which allows
 # certificate management to be done via REST APIs. Application may choose to use a standard
 # Certificate Authority instead of Fabric-CA, in which case this section would not be specified.
 #
 certificateAuthorities:
-  ca-org1:
-    url: http://localhost:7054
+  ca.blazers:
+    url: ca.blazers.com:7054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
@@ -129,4 +129,4 @@ certificateAuthorities:
       - enrollId: admin
         enrollSecret: adminpw
     # [Optional] The optional name of the CA.
-    caName: ca-org1
+    caName: ca.blazers.com
