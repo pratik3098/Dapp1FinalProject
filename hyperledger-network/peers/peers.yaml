@@ -114,11 +114,10 @@ services:
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.admin.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=admin.blazers.com:7051
       - CORE_PEER_GOSSIP_ORGLEADER=true
-      #- CORE_PEER_ADMINSERVICE_LISTENADDRESS=0.0.0.0:7055
       - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
       - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
-    command: peer node start
+    command: ./create-channel.sh  && ./launch-peer.sh
     links:
       - couchdb.admin.blazers.com
     volumes:
@@ -143,7 +142,7 @@ services:
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.supplier.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.supplier.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=supplier.blazers.com:7051
-    command: peer node start
+    command: ./launch-peer.sh
     links:
       - couchdb.supplier.blazers.com
     volumes:
@@ -189,7 +188,7 @@ services:
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.distributor.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.distributor.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=distributor.blazers.com:7051
-    command: peer node start
+    command: ./launch-peer.sh
     links:
       - couchdb.distributor.blazers.com
     volumes:
@@ -312,7 +311,7 @@ services:
       - CHANNEL_TX_FILE=./foodsupply-channel.tx
       - ORDERER_ADDRESS=orderer.blazers.com:7050
       - CORE_PEER_ID=cli.blazers.com
-      - CORE_PEER_ADDRESS=admin.blazers.com:7051
+      - CORE_PEER_ADDRESS=supplier.blazers.com:7051
       - CORE_PEER_LOCALMSPID=BlazersMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp
       - GOPATH=/opt/gopath
