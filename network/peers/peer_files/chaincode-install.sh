@@ -19,11 +19,11 @@ fi
 # Change these if you would like to try out your own chaincode
 export CC_CONSTRUCTOR='{"Args":["instantiate"]}'
 export CC_NAME="foodsupply"
-export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/contract_files/chaincode"
+export CC_PATH="/opt/gopath/src/github.com/hyperledger/fabric/peer/contract_files/contract"
 export CC_VERSION="1.0"
 export CC_CHANNEL_ID="foodsupplychannel"
 
-echo "CC Operation : $OPERATION    for   Org: $PEER_ORG"
+echo "CC Operation : $OPERATION    for   Org: Blazers"
 
 # Invoke the "peer chain code" command using the operation
 case $OPERATION in
@@ -33,6 +33,7 @@ case $OPERATION in
               peer chaincode list --installed -C $CC_CHANNEL_ID
         ;;
     "instantiate")
+              npm run --prefix $CC_PATH
               peer chaincode instantiate -C $CC_CHANNEL_ID -n $CC_NAME  -v $CC_VERSION -c $CC_CONSTRUCTOR  -o $ORDERER_ADDRESS
 
               #peer chaincode list --instantiated -C $CC_CHANNEL_ID
