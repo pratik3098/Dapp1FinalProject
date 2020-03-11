@@ -1,5 +1,5 @@
-## George Brown College - Blockchain Development Program
-### Dapp1 - Food Supply Chain
+### George Brown College - T175 Blockchain Development
+#### Dapp1 - Food Supply Chain
 
 -----
 Mohammad Jamshed Qureshi
