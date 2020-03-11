@@ -36,34 +36,6 @@ case $OPERATION in
 
               #peer chaincode list --instantiated -C $CC_CHANNEL_ID
         ;;
-    "query")
-            echo -n "Paper 001="
-            peer chaincode invoke -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["query","Magnetocorp","001"]}'
-            sleep 3
-            echo -n "Paper 002="
-            peer chaincode query -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["query","Magnetocorp","002"]}'
-        ;;
-    
-    "invoke")
-            
-            echo "Invoke issue transcation  from Magnetocorp"
-            peer chaincode invoke -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["issue","Magnetocorp","001","05-04-2019","05-09-2019","5M"]}'
-            
-            echo "Invoke issue transcation  from Magnetocorp"
-            peer chaincode invoke -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["issue","Magnetocorp","002","06-04-2019","10-10-2019","7M"]}'
-
-            sleep 3
-            echo "Invoke buy transcation  from Magnetocorp=>Digibank"
-            peer chaincode invoke -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["buy","Magnetocorp","001","Magnetocorp","Digibank", "100000", "27-09-2019"]}'
-
-        
-            sleep 3
-            echo "Invoke redeem transcation  from Magnetocorp"
-            peer chaincode invoke -C $CC_CHANNEL_ID -n $CC_NAME  -c '{"Args":["redeem","Magnetocorp","001","Digibank","12-08-2019"]}'
-           
-
-           
-        ;;
     "clear")
             echo "Cleaning up Chaincode Docker images"
             docker rmi -f $(docker images -q | grep dev-)

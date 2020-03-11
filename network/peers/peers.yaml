@@ -63,6 +63,8 @@ services:
     environment:
       - COUCHDB_USER=
       - COUCHDB_PASSWORD=
+    volumes:
+      -  /var/run/:/host/var/run/
     networks:
       - orderer_backend_network
   
@@ -137,13 +139,12 @@ services:
       service: peer
     environment:
       - CORE_PEER_ID=supplier.blazers
-    #  - CORE_PEER_ADDRESS=supplier.blazers.com:7051
+      - CORE_PEER_ADDRESS=supplier.blazers.com:7051
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.supplier.blazers.com:7052
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.supplier.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.supplier.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=supplier.blazers.com:7051
-   # command: ./launch-peer.sh
-    command: peer node start
+    command: ./peer_files/launch-peer.sh
     links:
       - couchdb.supplier.blazers.com
     volumes:
@@ -161,13 +162,12 @@ services:
       service: peer
     environment:
       - CORE_PEER_ID=manufacturer.blazers
-     # - CORE_PEER_ADDRESS=manufacturer.blazers.com:7051
+      - CORE_PEER_ADDRESS=manufacturer.blazers.com:7051
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.manufacturer.blazers.com:7052
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.manufacturer.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.manufacturer.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=manufacturer.blazers.com:7051
-    #command: ./launch-peer.sh
-    command: peer node start
+    command: ./peer_files/launch-peer.sh
     links:
       - couchdb.manufacturer.blazers.com
     volumes:
@@ -185,13 +185,12 @@ services:
       service: peer
     environment:
       - CORE_PEER_ID=distributor.blazers
-     # - CORE_PEER_ADDRESS=distributor.blazers.com:7051
+      - CORE_PEER_ADDRESS=distributor.blazers.com:7051
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.distributor.blazers.com:7052
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.distributor.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.distributor.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=distributor.blazers.com:7051
-    #command: ./launch-peer.sh
-    command: peer node start
+    command: ./peer_files/launch-peer.sh
     links:
       - couchdb.distributor.blazers.com
     volumes:
@@ -210,13 +209,13 @@ services:
       service: peer
     environment:
       - CORE_PEER_ID=retailer.blazers
-     # - CORE_PEER_ADDRESS=retailer.blazers.com:7051
+      - CORE_PEER_ADDRESS=retailer.blazers.com:7051
       - CORE_PEER_CHAINCODE_LISTENADDRESS=chaincode.retailer.blazers.com:7052
       - CORE_PEER_CHAINCODE_ADDRESS=chaincode.retailer.blazers.com:7052
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.retailer.blazers.com:5984
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=retailer.blazers.com:7051
-    #command: ./launch-peer.sh
-    command: peer node start
+    command: ./peer_files/launch-peer.sh
+
     links:
       - couchdb.retailer.blazers.com
     volumes:
